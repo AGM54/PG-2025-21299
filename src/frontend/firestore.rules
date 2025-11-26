@@ -1,0 +1,60 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Función para verificar si el usuario es administrador
+    function isAdmin() {
+      return request.auth != null && (
+             request.auth.token.email in [
+               'astridglauser8@gmail.com',
+             ] ||
+             exists(/databases/$(database)/documents/admin_users/$(request.auth.uid))
+      );
+    }
+    
+    // Perfiles de usuario
+    match /profiles/{uid} {
+      // Los usuarios pueden leer y escribir su propio perfil
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if request.auth != null && request.auth.uid == uid;
+      
+      // Los administradores pueden leer todos los perfiles
+      allow read: if isAdmin();
+      
+      // Eventos dentro del perfil
+      match /events/{eventId} {
+        allow read: if request.auth != null && request.auth.uid == uid;
+        allow create: if request.auth != null && request.auth.uid == uid;
+        allow update, delete: if false;
+        
+        // Los administradores pueden leer todos los eventos
+        allow read: if isAdmin();
+      }
+    }
+    
+    // Progreso del usuario
+    match /progress/{uid} {
+      // Los usuarios pueden leer y escribir su propio progreso
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if request.auth != null && request.auth.uid == uid;
+      
+      // Los administradores pueden leer todo el progreso
+      allow read: if isAdmin();
+    }
+    
+    // Métricas diarias (todos pueden incrementar, admins pueden leer todo)
+    match /metrics_daily/{day} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null;
+      allow delete: if false;
+    }
+    
+ 
+    match /admin_users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false; // Solo se puede modificar desde consola de Firebase
+    }
+  }
+}

@@ -1,0 +1,337 @@
+import { StyleSheet, Platform } from 'react-native';
+import { moderateScale as ms, msFont, verticalScale as vs, scale, deviceInfo, vw, vh } from '../../utils/responsive';
+
+const { isTablet, isSmallPhone } = deviceInfo();
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#1f2d55',
+    padding: scale(19),
+    paddingBottom: vh(12),
+  },
+  title: {
+    fontSize: msFont(isSmallPhone ? 18 : isTablet ? 23 : 20.6),
+    fontWeight: '700',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: vs(16),
+    letterSpacing: 0.5,
+    fontFamily: 'Century Gothic',
+  },
+  score: {
+    fontSize: msFont(isSmallPhone ? 15 : isTablet ? 18 : 17),
+    fontWeight: '600',
+    color: '#58CCF7',
+    textAlign: 'center',
+    marginBottom: vs(16),
+    fontFamily: 'Century Gothic',
+  },
+  dropZonesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginBottom: vs(24),
+    paddingHorizontal: scale(7.5),
+  },
+  dropZone: {
+    width: scale(isSmallPhone ? 140 : isTablet ? 190 : 158),
+    height: vh(22),
+    backgroundColor: '#2a3f6f',
+    borderRadius: ms(16),
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+    borderStyle: 'dashed',
+    marginBottom: vs(12),
+    padding: scale(11),
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
+  filledDropZone: {
+    backgroundColor: '#3a5a8c',
+    borderColor: '#58CCF7',
+    borderStyle: 'solid',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#58CCF7',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
+  },
+  imageContainer: {
+    width: scale(isSmallPhone ? 105 : isTablet ? 145 : 120),
+    height: scale(isSmallPhone ? 75 : isTablet ? 105 : 88),
+    backgroundColor: '#FFFFFF',
+    borderRadius: ms(12),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: vs(8),
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
+  },
+  dropZoneImage: {
+    width: '85%',
+    height: '85%',
+    resizeMode: 'contain',
+  },
+  dropZoneText: {
+    fontSize: msFont(isSmallPhone ? 11 : isTablet ? 13 : 12),
+    fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    lineHeight: msFont(isSmallPhone ? 14 : 15),
+    fontFamily: 'Century Gothic',
+  },
+  checkMark: {
+    position: 'absolute',
+    top: scale(7.5),
+    right: scale(7.5),
+    width: scale(22.5),
+    height: scale(22.5),
+    backgroundColor: '#28A745',
+    borderRadius: scale(11.25),
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#28A745',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+  },
+  checkMarkText: {
+    fontSize: msFont(15),
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+  },
+  sourcesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    paddingHorizontal: scale(7.5),
+  },
+  draggableItem: {
+    width: scale(isSmallPhone ? 140 : isTablet ? 190 : 158),
+    height: vs(64),
+    backgroundColor: '#2a3f6f',
+    borderRadius: ms(12),
+    borderWidth: 1,
+    borderColor: '#58CCF7',
+    marginBottom: vs(8),
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: scale(15),
+    ...Platform.select({
+      ios: {
+        shadowColor: '#58CCF7',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
+  draggingItem: {
+    backgroundColor: '#3C3C3C',
+    borderColor: '#FFF',
+    borderWidth: 2,
+    transform: [{ scale: 1.05 }],
+    zIndex: 1000,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#FFFFFF',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 10,
+      },
+    }),
+  },
+  sourceEmoji: {
+    fontSize: msFont(isSmallPhone ? 20 : 22.5),
+    marginRight: scale(11),
+  },
+  sourceText: {
+    fontSize: msFont(isSmallPhone ? 13 : isTablet ? 15 : 14.3),
+    fontWeight: '600',
+    color: '#FFFFFF',
+    flex: 1,
+    fontFamily: 'Century Gothic',
+  },
+  completionMessage: {
+    alignItems: 'center',
+    marginTop: vs(16),
+    padding: scale(19),
+    backgroundColor: '#2A4B7C',
+    borderRadius: ms(16),
+    borderWidth: 2,
+    borderColor: '#28A745',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#28A745',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
+  },
+  completionText: {
+    fontSize: msFont(isSmallPhone ? 16 : isTablet ? 21 : 18.75),
+    fontWeight: '700',
+    color: '#28A745',
+    textAlign: 'center',
+    marginBottom: vs(8),
+    fontFamily: 'Century Gothic',
+  },
+  completionSubText: {
+    fontSize: msFont(isSmallPhone ? 13 : isTablet ? 15 : 14.3),
+    fontWeight: '500',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontFamily: 'Century Gothic',
+  },
+  selectedItem: {
+    backgroundColor: '#1f2d55',
+    borderColor: '#FFF',
+    borderWidth: 3,
+    transform: [{ scale: 1.05 }],
+    ...Platform.select({
+      ios: {
+        shadowColor: '#FFFFFF',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.6,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
+  },
+  selectedIndicator: {
+    position: 'absolute',
+    top: vs(-16),
+    right: scale(7.5),
+    backgroundColor: 'transparent',
+  },
+  selectedIndicatorText: {
+    fontSize: msFont(15),
+    color: '#FFD700',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: scale(19),
+  },
+  modalContainer: {
+    width: vw(90),
+    borderRadius: ms(25),
+    padding: scale(22.5),
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: 'rgba(31, 45, 85, 0.8)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#1f2d55',
+        shadowOffset: { width: 0, height: 15 },
+        shadowOpacity: 1,
+        shadowRadius: 25,
+      },
+      android: {
+        elevation: 20,
+      },
+    }),
+  },
+  modalTitle: {
+    fontSize: msFont(isSmallPhone ? 20 : isTablet ? 26 : 22.5),
+    fontWeight: '800',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: vs(16),
+    textShadowColor: 'rgba(31, 45, 85, 1)',
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
+    letterSpacing: 1,
+  },
+  modalMessage: {
+    fontSize: msFont(isSmallPhone ? 15 : isTablet ? 18 : 17),
+    fontWeight: '500',
+    color: 'rgba(255, 255, 255, 0.95)',
+    textAlign: 'center',
+    lineHeight: msFont(isSmallPhone ? 22 : isTablet ? 27 : 24.4),
+    marginBottom: vs(24),
+    paddingHorizontal: scale(7.5),
+  },
+  modalButton: {
+    borderRadius: ms(20),
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: 'rgba(31, 45, 85, 0.6)',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#58CCF7',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.6,
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 8,
+      },
+    }),
+  },
+  modalButtonGradient: {
+    paddingVertical: vs(16),
+    paddingHorizontal: scale(30),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalButtonText: {
+    fontSize: msFont(isSmallPhone ? 16 : isTablet ? 21 : 18.75),
+    fontWeight: '700',
+    color: '#FFFFFF',
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
+    letterSpacing: 0.5,
+  },
+});

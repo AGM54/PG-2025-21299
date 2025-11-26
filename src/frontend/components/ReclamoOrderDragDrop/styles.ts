@@ -1,0 +1,150 @@
+import { StyleSheet } from 'react-native';
+import { moderateScale as ms, msFont, verticalScale as vs, scale, deviceInfo } from '../../utils/responsive';
+
+const { isTablet, isSmallPhone } = deviceInfo();
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: ms(20),
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: msFont(isSmallPhone ? 20 : isTablet ? 26 : 24),
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: vs(10),
+    paddingHorizontal: scale(10),
+  },
+  instruction: {
+    fontSize: msFont(isSmallPhone ? 14 : isTablet ? 17 : 16),
+    color: '#B8B8B8',
+    textAlign: 'center',
+    marginBottom: vs(15),
+    paddingHorizontal: scale(10),
+    lineHeight: msFont(22),
+  },
+  hintBox: {
+    borderRadius: ms(15),
+    padding: scale(12),
+    marginBottom: vs(20),
+    alignItems: 'center',
+  },
+  hintText: {
+    fontSize: msFont(isSmallPhone ? 12 : isTablet ? 15 : 14),
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  itemsContainer: {
+    flex: 1,
+    paddingVertical: vs(10),
+  },
+  stepCard: {
+    marginBottom: vs(12),
+    borderRadius: ms(15),
+    overflow: 'hidden',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+  },
+  completedCard: {
+    transform: [{ scale: 1.02 }],
+  },
+  stepGradient: {
+    padding: scale(16),
+    borderRadius: ms(15),
+  },
+  stepHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: vs(8),
+  },
+  stepIcon: {
+    fontSize: msFont(24),
+  },
+  stepNumber: {
+    fontSize: msFont(isSmallPhone ? 12 : isTablet ? 15 : 14),
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    paddingHorizontal: scale(8),
+    paddingVertical: vs(4),
+    borderRadius: ms(10),
+  },
+  stepText: {
+    fontSize: msFont(isSmallPhone ? 14 : isTablet ? 17 : 16),
+    color: '#FFFFFF',
+    fontWeight: '500',
+    lineHeight: msFont(22),
+    marginBottom: vs(10),
+  },
+  moveButtons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: scale(10),
+  },
+  moveButton: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: ms(20),
+    width: scale(40),
+    height: scale(40),
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  moveButtonText: {
+    fontSize: msFont(18),
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: vs(20),
+    gap: scale(10),
+  },
+  checkButton: {
+    flex: 1,
+    borderRadius: ms(25),
+    overflow: 'hidden',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+  },
+  resetButton: {
+    flex: 1,
+    borderRadius: ms(25),
+    overflow: 'hidden',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+  },
+  buttonGradient: {
+    paddingVertical: vs(14),
+    paddingHorizontal: scale(20),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: msFont(isSmallPhone ? 14 : isTablet ? 17 : 16),
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+  attemptsText: {
+    fontSize: msFont(isSmallPhone ? 14 : isTablet ? 17 : 16),
+    color: '#58CCF7',
+    textAlign: 'center',
+    marginTop: vs(15),
+    fontWeight: '600',
+  },
+});
